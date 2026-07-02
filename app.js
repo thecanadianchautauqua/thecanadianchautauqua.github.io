@@ -127,9 +127,12 @@
       dot.addEventListener('mouseenter', activate);
       lbl.addEventListener('mouseenter', activate);
       g.addEventListener('mouseleave', clearActive);
+      g.addEventListener('click', activate);   // tap to select (touch / mobile)
     });
 
-    svg.appendChild(el('circle', { cx: CX, cy: CY, r: HUB - 8, class: 'wheel-hub' }));
+    const hub = el('circle', { cx: CX, cy: CY, r: HUB - 8, class: 'wheel-hub' });
+    hub.addEventListener('click', clearActive);   // tap centre to reset (touch / mobile)
+    svg.appendChild(hub);
     const h1 = el('text', { x: CX, y: CY - 6, class: 'wheel-hub-label' }); h1.textContent = 'Circle';
     const h2 = el('text', { x: CX, y: CY + 13, class: 'wheel-hub-label' }); h2.textContent = 'Street';
     svg.appendChild(h1); svg.appendChild(h2);
